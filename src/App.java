@@ -76,7 +76,7 @@ public class App {
         double averageValue1 = computeAverageValue1(dataList);
 
         // TODO: Print insights
-        System.out.println("Number of rows loaded: " + dataList.size());
+        System.out.println("numbers of rows loaded: " + dataList.size());
         System.out.println("Value1 - Min: " + minValue1);
         System.out.println("Value1 - Max: " + maxValue1);
         System.out.println("Value1 - Average: " + averageValue1);
