@@ -1,5 +1,5 @@
 /**
- * Represents one row from your dataset.
+ * represents one row from your dataset.
  *
  * TODO:
  *  - Rename the class to match your dataset (e.g., Pokemon, StateData, CountryStat)
@@ -12,20 +12,20 @@
 public class Data {
 
     // TODO: Add at least 3 private attributes
-    private int id;
+    private String name;
     private double value1;
     private double value2;
 
     // TODO: Create a constructor that takes all attributes as parameters
-    public Data(int id, double value1, double value2) {
-        this.id = id;
+    public Data(String name, double value1, double value2) {
+        this.name = name;
         this.value1 = value1;
         this.value2 = value2;
     }
 
     // TODO: Add getters for attributes you need
-    public int getId() {
-        return id;
+    public String getName() {
+        return name;
     }
 
     public double getValue1() {
@@ -37,15 +37,14 @@ public class Data {
     }
 
     // TODO: Add other data analysis methods
-    // (no additional methods needed for basic analysis in App class)
+    // example: simple method to check if value1 is greater than a threshold
+    public boolean isValue1GreaterThan(double threshold) {
+        return value1 > threshold;
+    }
 
     // TODO: Override toString() to return a readable representation of your object
     @Override
     public String toString() {
-        return "Data{" +
-                "id=" + id +
-                ", value1=" + value1 +
-                ", value2=" + value2 +
-                '}';
+        return "name: " + name + ", value1: " + value1 + ", value2: " + value2;
     }
 }

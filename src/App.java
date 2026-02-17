@@ -1,34 +1,8 @@
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
 import java.util.Scanner;
 
-/**
- * Main application for the Data Analysis Mini‑Project.
- *
- * TODO:
- *  - Update the path to your dataset file
- *  - Read the CSV file using Scanner
- *  - Parse each row and extract the correct columns
- *  - Construct Data objects from each row
- *  - Store them in an array
- *  - Write methods to analyze the dataset (min, max, average, filters, etc.)
- *  - Print insights and answer your guiding question
- *  - Add Javadoc comments for any methods you create
- */
 public class App {
-
-    static class Data {
-        int id;
-        double value1;
-        double value2;
-
-        Data(int id, double value1, double value2) {
-            this.id = id;
-            this.value1 = value1;
-            this.value2 = value2;
-        }
-    }
 
     public static void main(String[] args) {
 
@@ -36,78 +10,84 @@ public class App {
         File file = new File("data/your_dataset.csv");
 
         // TODO: Create an array of Data objects to store data
-        ArrayList<Data> dataList = new ArrayList<>();
+        Data[] dataList = new Data[1000]; // assuming max 1000 rows
+        int count = 0;
 
         // TODO: Read file using Scanner
-        try (Scanner scanner = new Scanner(file)) {
-
-            // - Skip header if needed
+        // - Skip header if needed
+        // - Loop through rows
+        // - Split each line by commas
+        // - Convert text to numbers when needed
+        // - Create new Data objects
+        // - Add to your array
+        try {
+            Scanner scanner = new Scanner(file);
             if (scanner.hasNextLine()) {
-                scanner.nextLine();
+                scanner.nextLine(); // skip header
             }
-
-            // - Loop through rows
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
-
-                // - Split each line by commas
                 String[] parts = line.split(",");
-
-                // - Convert text to numbers when needed
-                int id = Integer.parseInt(parts[0]);
+                
+                // example assuming CSV has: name, value1, value2
+                String name = parts[0];
                 double value1 = Double.parseDouble(parts[1]);
                 double value2 = Double.parseDouble(parts[2]);
 
-                // - Create new Data objects
-                Data data = new Data(id, value1, value2);
-
-                // - Add to your array
-                dataList.add(data);
+                Data d = new Data(name, value1, value2);
+                dataList[count] = d;
+                count++;
             }
-
+            scanner.close();
         } catch (FileNotFoundException e) {
-            System.out.println("File not found: " + file.getAbsolutePath());
-            return;
+            System.out.println("file not found: " + file.getPath());
         }
 
         // TODO: Call your analysis methods
-        double maxValue1 = findMaxValue1(dataList);
-        double minValue1 = findMinValue1(dataList);
-        double averageValue1 = computeAverageValue1(dataList);
+        // Example:
+        double maxValue = findMaxValue(dataList, count);
+        double average = computeAverageValue(dataList, count);
 
         // TODO: Print insights
-        System.out.println("numbers of rows loaded: " + dataList.size());
-        System.out.println("Value1 - Min: " + minValue1);
-        System.out.println("Value1 - Max: " + maxValue1);
-        System.out.println("Value1 - Average: " + averageValue1);
-        System.out.println("Analysis complete!");
+        // - Number of rows loaded
+        // - Min, max, average, or any other findings
+        // - Final answer to your guiding question
+        System.out.println("rows loaded: " + count);
+        System.out.println("max value: " + maxValue);
+        System.out.println("average value: " + average);
+
     }
 
-    public static double findMaxValue1(ArrayList<Data> dataList) {
-        double max = Double.NEGATIVE_INFINITY;
-        for (Data data : dataList) {
-            if (data.value1 > max) {
-                max = data.value1;
+    // simple method to find max of value1 in the array
+    public static double findMaxValue(Data[] list, int size) {
+        double max = list[0].value1;
+        for (int i = 1; i < size; i++) {
+            if (list[i].value1 > max) {
+                max = list[i].value1;
             }
         }
         return max;
     }
 
-    public static double findMinValue1(ArrayList<Data> dataList) {
-        double min = Double.POSITIVE_INFINITY;
-        for (Data data : dataList) {
-            if (data.value1 < min) {
-                min = data.value1;
-            }
-        }
-        return min;
-    }
-
-    public static double computeAverageValue1(ArrayList<Data> dataList) {
+    // simple method to compute average of value1 in the array
+    public static double computeAverageValue(Data[] list, int size) {
         double sum = 0;
-        for (Data data : dataList) {
-            sum += data.value1;
+        for (int i = 0; i < size; i++) {
+            sum += list[i].value1;
         }
-        return sum / dataList.size();
+        return sum / size;
+    }
+}
+
+// simple Data class
+class Data {
+    String name;
+    double value1;
+    double value2;
+
+    public Data(String name, double value1, double value2) {
+        this.name = name;
+        this.value1 = value1;
+        this.value2 = value2;
     }
 }
