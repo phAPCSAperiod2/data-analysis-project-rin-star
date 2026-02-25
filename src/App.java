@@ -20,7 +20,7 @@ public class App {
     public static void main(String[] args) {
 
         // TODO: Update this with your CSV file path
-        File file = new File("data/pokemon (1).csv");
+        File file = new File("src/pokemon (1).csv");
 
         // TODO: Create an array of Data objects to store data
         Data[] dataList = new Data[151];
