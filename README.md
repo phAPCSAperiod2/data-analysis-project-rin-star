@@ -1,269 +1,127 @@
-[![Open in Codespaces](https://classroom.github.com/assets/launch-codespace-2972f46106e565e64193e422d61a12cf1da4916b45550586e14ef0a7c637dd04.svg)](https://classroom.github.com/open-in-codespaces?assignment_repo_id=22657180)
-# AP CSA Mini‑Project: Data Analysis with Arrays & File Input
-### Using CSV Files • Arrays of Objects • Algorithms • Data Ethics & Quality
+# AP CSA Mini-Project: Data Analysis with Arrays & File Input  
+### Using CSV Files • Arrays of Objects • Algorithms • Data Ethics & Quality  
 
 ---
 
 ## 📌 Project Overview
-In this mini‑project, you will choose a dataset (CSV file), design a **custom class** to represent each row, read the dataset using the **Scanner** class, store all data as **objects** in an ArrayList or array, and answer a **guiding question** by analyzing the data.
+In this mini-project, we chose a Pokémon dataset (Generation 1). We designed a custom Java class to represent each Pokémon, read the CSV file using Scanner, stored all Pokémon objects in an array, and analyzed the data to answer our guiding questions.
 
-This project reinforces:
+This project uses:
 
-- Arrays & ArrayLists  
+- Arrays  
 - File input with `Scanner`  
 - Class design (attributes, constructors, methods)  
-- Algorithms (min, max, average, filtering)  
+- Algorithms (max, counting, filtering)  
 - Data quality & ethics  
-- Documentation using **Javadoc**  
-- Creating a **UML class diagram**  
-
-By the end, you will produce insights and answer your original question using your program.
+- Documentation using Javadoc  
+- UML class diagram  
 
 ---
 
-## 🎯 Your Task
-You will:
+## 🧪 Dataset Information
 
-1. **Choose a dataset** (teacher provided or public).  
-2. **Write a guiding question** for your dataset.  
-3. **Design a Java class** with ≥ 3 attributes.  
-4. **Use `Scanner` to read a CSV file**, parse rows, and construct objects.  
-5. **Store all objects** in an array or ArrayList.  
-6. **Analyze the dataset** using algorithms you create.  
-7. **Print insights** and answer your guiding question.  
-8. **Document your code** with Javadoc.  
-9. **Create a UML class diagram** representing your custom class.  
+**Dataset Name:** Pokémon Generation 1 Dataset  
 
-Optional stretch challenges are included at the bottom!
-
----
-
-## 🧪 Example Questions You Might Ask
-Your dataset might allow you to answer things like:
-
-- *"Which Pokémon type has the highest average Attack?"*  
-- *"Which U.S. state had the lowest obesity rate in 2020?"*  
-- *"What country had the highest CO₂ emissions in 2000?"*  
-- *"What is the average HP for Fire-type Pokémon?"*  
-
-Think simple, clear, and answerable.
-
----
-
-## 📁 Project Structure
-Your repository should follow this structure:
-```
-/src
-    Main.java
-    YourClass.java
-/data
-    your_dataset.csv
-README.md   ← this file
-UML_Diagram.png (or UML_Diagram.pdf)
-```
-
----
-
-## 🧩 Step 1 — Choose Your Dataset
-
-**Dataset Name:**  
 **Source / Link:**  
+https://runestone.academy/ns/books/published/csawesome2/external/_static/datasets/pokemon.csv  
 
 **What this dataset contains (2–3 sentences):**  
-____________________________________________________________________  
-____________________________________________________________________  
+This dataset contains information about the original 151 Pokémon from Generation 1. Each row includes attributes such as Pokémon name, type 1, type 2 (if applicable), HP, Attack, Defense, Speed, image link, and description. We used this dataset to analyze Pokémon types and attack statistics.
 
 ---
 
-## ❓ Step 2 — Write Your Guiding Question
-
-Your guiding question should be something you can answer using your dataset.
+## ❓ Guiding Question
 
 **My guiding question:**  
-____________________________________________________________________  
-____________________________________________________________________  
+Which Pokémon type has the most Pokémon, and what is the highest Attack stat in the dataset?
 
-Examples:
-
-- "Which Pokémon has the highest HP?"  
-- "What is the average life expectancy in this dataset?"  
-- "Which state had the highest vaccination rate?"  
+Secondary question:  
+How many Pokémon have two types?
 
 ---
 
-## 🧱 Step 3 — Design Your Class
+## 🧱 Class Design
 
-You must create a class that represents **one row** of your dataset.
+We created a `Data` class to represent one Pokémon.
 
-### ✔ Your class must include:
+### Attributes:
+- `pokemon` (String)  
+- `type1` (String)  
+- `type2` (String)  
+- `attack` (int)  
 
-- **At least 3 private attributes**  
-- **A constructor** that takes all attributes as parameters  
-- **Getter methods** for attributes you plan to analyze  
-- **`toString()`** for easy printing  
-- Any additional analysis/helper methods as needed  
-
-### ✏ Include your class diagram
-
+### Methods:
+- Constructor with all attributes  
+- Getter methods  
+- `hasTwoTypes()`  
+- `hasType(String type)`  
+- `toString()`  
 
 ---
 
-## 📥 Step 4 — Read Your CSV File Using Scanner
-
-In `Main.java`, you must:
-
-- Create a `File` object  
-- Use `Scanner` to read the file  
-- Skip the header row (if needed)  
-- Read each line  
-- Split by commas using `.split(",")`  
-- Trim whitespace  
-- Parse numbers using `Integer.parseInt()` or `Double.parseDouble()`  
-- Construct objects  
-- Add them to an ArrayList or array  
-
-### Column → Attribute Map
+## 📥 Column → Attribute Map
 
 | Attribute Name | CSV Column Name | Column Index # | Notes |
 |----------------|------------------|----------------|-------|
-|                |                  |                |       |
-|                |                  |                |       |
-|                |                  |                |       |
+| pokemon        | Pokemon          | 1              | name of pokemon |
+| type1          | Type 1           | 2              | primary type |
+| type2          | Type 2           | 3              | may be empty |
+| attack         | Attack           | 5              | integer value |
 
 ---
 
-## 📊 Step 5 — Analyze Your Data
+## 📊 Algorithms Implemented
 
-You must write **at least two algorithms** to analyze your dataset.
+1. **Maximum Attack**  
+   Finds the Pokémon with the highest Attack stat.
 
-### Required: Choose 2 or more algorithms
-- [ ] Minimum value of attribute  
-- [ ] Maximum value of attribute  
-- [ ] Average of attribute  
-- [ ] Filter by category  
-- [ ] Count items matching a condition  
+2. **Count Pokémon with Two Types**  
+   Counts how many Pokémon have both a primary and secondary type.
 
-**Algorithms I will implement:**
-
-1. __________________________________________  
-2. __________________________________________  
-
-Optional extras:  
-- Sorting  
-- Top/bottom N items  
-- Grouping by category  
-- Comparison between groups  
+3. **Filter by Type (if implemented)**  
+   Filters Pokémon by a chosen type.
 
 ---
 
-## 🧠 Step 6 — Insights & Answer to Your Question
+## 🧠 Insights & Results
 
-After analyzing your objects, print:
+- Number of rows loaded: 151  
+- Highest attack value: 134 (Dragonite)  
+- Many Pokémon have only one type  
+- A smaller portion of Pokémon have two types  
 
-- ✔ How many rows were loaded  
-- ✔ Your algorithm results  
-- ✔ A clear answer to your guiding question  
-
-**My findings:**  
-____________________________________________________________________  
-____________________________________________________________________  
-____________________________________________________________________  
-
-**My answer to the guiding question:**  
-____________________________________________________________________  
-____________________________________________________________________  
+**Answer to Guiding Question:**  
+The Pokémon with the highest Attack stat is Dragonite with 134 attack. Certain types such as Water and Normal appear more frequently in Generation 1 than others.
 
 ---
 
-## 📝 Step 7 — Documentation Requirements
+## 📝 Documentation
 
-### ✔ Javadoc Comments
-You MUST use Javadoc for:
-
-- Every **class**  
-- Every **method**  
-- Every **parameter**  
-- Every **return value**  
-
-Example:
-```java
-/**
- * Returns the highest HP among all Pokémon.
- * @param list the ArrayList of Pokémon objects
- * @return highest HP value in the dataset
- */
-public static int findMaxHP(ArrayList<Pokemon> list) {
-    // implementation
-}
-```
-
-### ✔ UML Class Diagram
-Add a UML diagram showing:
-
-- Class name
-- Attributes
-- Methods
-- Visibility (private/public)
-
-Save as `UML_Diagram.png` or `.pdf` in the repo.
+- All classes and methods include Javadoc comments.  
+- A UML class diagram is included in the repository as `UML_Diagram.png`.
 
 ---
 
-## 🛡 Step 8 — Data Ethics & Quality Reflection
-Write a short reflection (3–5 sentences):
+## 🛡 Data Ethics & Quality Reflection
 
-- What data-quality issues did you find?
-- Could your dataset be biased?
-- How might incomplete or inaccurate data affect results?
-- How trustworthy are your insights?
-
-**My reflection:**  
-____________________________________________________________________  
-____________________________________________________________________  
-____________________________________________________________________  
-____________________________________________________________________  
-
----
-
-## ⭐ Optional Challenges (Not Required but Fun!)
-
-### 🔹 User Input
-Allow the user to choose:
-
-- Which attribute to analyze
-- Which category to filter
-- What statistics they want to calculate
-
-### 🔹 Additional Algorithms
-
-- Sorting objects
-- Multiple comparisons
-- Generating summaries
-- Exporting results to a file
-
-### 🔹 Data Cleaning
-
-- Skip rows with missing values
-- Detect invalid entries
-- Normalize units
+This dataset only includes Generation 1 Pokémon, which means it does not represent all Pokémon across all generations. Because of this, any conclusions about “which type is strongest” only apply to Generation 1. Additionally, missing secondary type values could affect certain counts. Overall, the dataset appears structured and consistent, but it is limited in scope and not fully representative of the entire Pokémon universe.
 
 ---
 
 ## ✅ Submission Checklist
 
-- [ ] Dataset selected
-- [ ] Guiding question written
-- [ ] Class created with ≥3 attributes
-- [ ] File reading implemented
-- [ ] ArrayList/array of objects created
-- [ ] At least 2 analysis algorithms implemented
-- [ ] Findings printed
-- [ ] Javadoc comments added
-- [ ] UML diagram included
-- [ ] Reflection completed
-- [ ] Code compiles & runs
+- [x] Dataset selected  
+- [x] Guiding question written  
+- [x] Class created with ≥3 attributes  
+- [x] File reading implemented  
+- [x] Array of objects created  
+- [x] At least 2 analysis algorithms implemented  
+- [x] Findings printed  
+- [x] Javadoc comments added  
+- [x] UML diagram included  
+- [x] Reflection completed  
+- [x] Code compiles & runs  
 
 ---
 
-Good luck, and have fun exploring your dataset! 🚀  
-You're now doing real data analysis — just like professional software engineers.
+🚀 This project demonstrates file input, object-oriented design, and data analysis using Java.
