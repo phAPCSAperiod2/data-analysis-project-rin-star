@@ -2,15 +2,28 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
+/**
+ * Main application for the Data Analysis Mini-Project.
+ *
+ * TODO:
+ *  - Update the path to your dataset file\
+ *  - Read the CSV file using Scanner
+ *  - Parse each row and extract the correct columns
+ *  - Construct Data objects from each row
+ *  - Store them in an array
+ *  - Write methods to analyze the dataset (min, max, average, filters, etc.)
+ *  - Print insights and answer your guiding question
+ *  - Add Javadoc comments for any methods you create
+ */
 public class App {
 
     public static void main(String[] args) {
 
         // TODO: Update this with your CSV file path
-        File file = new File("data/your_dataset.csv");
+        File file = new File("data/pokemon (1).csv");
 
         // TODO: Create an array of Data objects to store data
-        Data[] dataList = new Data[1000]; // assuming max 1000 rows
+        Data[] dataList = new Data[151];
         int count = 0;
 
         // TODO: Read file using Scanner
@@ -22,72 +35,74 @@ public class App {
         // - Add to your array
         try {
             Scanner scanner = new Scanner(file);
+
             if (scanner.hasNextLine()) {
-                scanner.nextLine(); // skip header
+                scanner.nextLine();
             }
-            while (scanner.hasNextLine()) {
+
+            while (scanner.hasNextLine() && count < dataList.length) {
                 String line = scanner.nextLine();
                 String[] parts = line.split(",");
-                
-                // example assuming CSV has: name, value1, value2
-                String name = parts[0];
-                double value1 = Double.parseDouble(parts[1]);
-                double value2 = Double.parseDouble(parts[2]);
 
-                Data d = new Data(name, value1, value2);
-                dataList[count] = d;
+                String name = parts[1];
+                String type1 = parts[2];
+                String type2 = parts[3];
+                int attack = Integer.parseInt(parts[5]);
+
+                dataList[count] = new Data(name, type1, type2, attack);
                 count++;
             }
+
             scanner.close();
+
         } catch (FileNotFoundException e) {
-            System.out.println("file not found: " + file.getPath());
+            System.out.println("file not found");
+            return;
         }
 
         // TODO: Call your analysis methods
         // Example:
-        double maxValue = findMaxValue(dataList, count);
-        double average = computeAverageValue(dataList, count);
+        // double maxValue = findMaxValue(dataList);
+        // double average = computeAverageValue(dataList);
+        int maxAttack = findMaxAttack(dataList, count);
+        int twoTypeCount = countTwoTypes(dataList, count);
 
         // TODO: Print insights
         // - Number of rows loaded
         // - Min, max, average, or any other findings
         // - Final answer to your guiding question
-        System.out.println("rows loaded: " + count);
-        System.out.println("max value: " + maxValue);
-        System.out.println("average value: " + average);
+        System.out.println("number of rows loaded: " + count);
+        System.out.println("max attack: " + maxAttack);
+        System.out.println("number of pokemon with two types: " + twoTypeCount);
 
+
+        // OPTIONAL TODO:
+        // Add user interaction:
+        // Ask the user what kind of analysis they want to see
     }
 
-    // simple method to find max of value1 in the array
-    public static double findMaxValue(Data[] list, int size) {
-        double max = list[0].value1;
+    public static int findMaxAttack(Data[] dataList, int size) {
+        int max = dataList[0].getAttack();
+
         for (int i = 1; i < size; i++) {
-            if (list[i].value1 > max) {
-                max = list[i].value1;
+            if (dataList[i].getAttack() > max) {
+                max = dataList[i].getAttack();
             }
         }
+
         return max;
     }
 
-    // simple method to compute average of value1 in the array
-    public static double computeAverageValue(Data[] list, int size) {
-        double sum = 0;
+    public static int countTwoTypes(Data[] dataList, int size) {
+        int count = 0;
+
         for (int i = 0; i < size; i++) {
-            sum += list[i].value1;
+            if (dataList[i].hasTwoTypes()) {
+                count++;
+            }
         }
-        return sum / size;
-    }
-}
 
-// simple Data class
-class Data {
-    String name;
-    double value1;
-    double value2;
-
-    public Data(String name, double value1, double value2) {
-        this.name = name;
-        this.value1 = value1;
-        this.value2 = value2;
+        return count;
     }
+
 }
