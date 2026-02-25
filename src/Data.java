@@ -1,5 +1,5 @@
 /**
- * represents one row from your dataset.
+ * Represents one row from your dataset.
  *
  * TODO:
  *  - Rename the class to match your dataset (e.g., Pokemon, StateData, CountryStat)
@@ -12,39 +12,65 @@
 public class Data {
 
     // TODO: Add at least 3 private attributes
-    private String name;
-    private double value1;
-    private double value2;
+    // Example:
+    // private String name;
+    // private int population;
+    // private double value;
+
+    private String pokemon;
+    private String type1;
+    private String type2;
+    private int attack;
 
     // TODO: Create a constructor that takes all attributes as parameters
-    public Data(String name, double value1, double value2) {
-        this.name = name;
-        this.value1 = value1;
-        this.value2 = value2;
+    public Data(String pokemon, String type1, String type2, int attack) {
+        this.pokemon = pokemon;
+        this.type1 = type1;
+        this.type2 = type2;
+        this.attack = attack;
     }
 
     // TODO: Add getters for attributes you need
-    public String getName() {
-        return name;
+    public String getPokemon() {
+        return pokemon;
     }
 
-    public double getValue1() {
-        return value1;
+    public String getType1() {
+        return type1;
     }
 
-    public double getValue2() {
-        return value2;
+    public String getType2() {
+        return type2;
+    }
+
+    public int getAttack() {
+        return attack;
     }
 
     // TODO: Add other data analysis methods
-    // example: simple method to check if value1 is greater than a threshold
-    public boolean isValue1GreaterThan(double threshold) {
-        return value1 > threshold;
+    public boolean hasTwoTypes() {
+        if (!type2.equals("")) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean hasType(String type) {
+        if (type1.equalsIgnoreCase(type)) {
+            return true;
+        }
+        if (type2.equalsIgnoreCase(type)) {
+            return true;
+        }
+        return false;
     }
 
     // TODO: Override toString() to return a readable representation of your object
-    @Override
     public String toString() {
-        return "name: " + name + ", value1: " + value1 + ", value2: " + value2;
+        if (!type2.equals("")) {
+            return pokemon + " | " + type1 + "/" + type2 + " | attack: " + attack;
+        }
+        return pokemon + " | " + type1 + " | attack: " + attack;
     }
+
 }
