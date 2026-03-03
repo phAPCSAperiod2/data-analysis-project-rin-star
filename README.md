@@ -1,8 +1,8 @@
 ---
 
-# AP CSA Mini-Project: Data Analysis with Arrays & File Input
+AP CSA Mini-Project: Data Analysis with Arrays & File Input
 
-## Using CSV Files • Arrays of Objects • Algorithms • Data Ethics & Quality
+Using CSV Files • Arrays of Objects • Algorithms • Data Ethics & Quality
 
 ## Project Overview
 
