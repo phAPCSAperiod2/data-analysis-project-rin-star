@@ -68,9 +68,11 @@ public class Data {
     // TODO: Override toString() to return a readable representation of your object
     public String toString() {
         if (!type2.equals("")) {
-            return pokemon + " | " + type1 + "/" + type2 + " | attack: " + attack;
+            System.out.println(pokemon + " | " + type1 + "/" + type2 + " | attack: " + attack);
+        } else {
+            System.out.println(pokemon + " | " + type1 + " | attack: " + attack);
         }
-        return pokemon + " | " + type1 + " | attack: " + attack;
+        return "";
     }
 
 }
