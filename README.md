@@ -1,127 +1,129 @@
-# AP CSA Mini-Project: Data Analysis with Arrays & File Input  
-### Using CSV Files • Arrays of Objects • Algorithms • Data Ethics & Quality  
+---
+
+# AP CSA Mini-Project: Data Analysis with Arrays & File Input
+
+## Using CSV Files • Arrays of Objects • Algorithms • Data Ethics & Quality
+
+## Project Overview
+
+For this mini-project, we analyzed a Pokémon dataset containing the original 151 Pokémon from Generation 1. We designed a custom Java class to represent each Pokémon, read data from a CSV file using `Scanner`, stored the objects in an array, and implemented algorithms to analyze the dataset.
+
+This project demonstrates:
+
+* Arrays of objects
+* File input using `Scanner`
+* Class design (attributes, constructor, methods)
+* Data analysis algorithms (maximum, counting, filtering)
+* Data ethics and quality reflection
+* Documentation with Javadoc
+* UML class diagram
 
 ---
 
-## 📌 Project Overview
-In this mini-project, we chose a Pokémon dataset (Generation 1). We designed a custom Java class to represent each Pokémon, read the CSV file using Scanner, stored all Pokémon objects in an array, and analyzed the data to answer our guiding questions.
+## Dataset Information
 
-This project uses:
+**Dataset Name:** Pokémon Generation 1 Dataset
 
-- Arrays  
-- File input with `Scanner`  
-- Class design (attributes, constructors, methods)  
-- Algorithms (max, counting, filtering)  
-- Data quality & ethics  
-- Documentation using Javadoc  
-- UML class diagram  
+**Source:**
+[https://runestone.academy/ns/books/published/csawesome2/external/_static/datasets/pokemon.csv](https://runestone.academy/ns/books/published/csawesome2/external/_static/datasets/pokemon.csv)
+
+**Dataset Description:**
+This dataset contains information about the original 151 Pokémon from Generation 1. Each row includes attributes such as Pokémon name, primary type, secondary type (if applicable), HP, Attack, Defense, Speed, image link, and description. The dataset was used to analyze Pokémon types and Attack statistics.
 
 ---
 
-## 🧪 Dataset Information
+## Guiding Questions
 
-**Dataset Name:** Pokémon Generation 1 Dataset  
+Primary Question:
+Which Pokémon has the highest Attack stat in Generation 1?
 
-**Source / Link:**  
-https://runestone.academy/ns/books/published/csawesome2/external/_static/datasets/pokemon.csv  
+Secondary Questions:
 
-**What this dataset contains (2–3 sentences):**  
-This dataset contains information about the original 151 Pokémon from Generation 1. Each row includes attributes such as Pokémon name, type 1, type 2 (if applicable), HP, Attack, Defense, Speed, image link, and description. We used this dataset to analyze Pokémon types and attack statistics.
-
----
-
-## ❓ Guiding Question
-
-**My guiding question:**  
-Which Pokémon type has the most Pokémon, and what is the highest Attack stat in the dataset?
-
-Secondary question:  
-How many Pokémon have two types?
+* How many Pokémon have two types?
+* Which Pokémon types appear most frequently?
 
 ---
 
-## 🧱 Class Design
+## Class Design
 
 We created a `Data` class to represent one Pokémon.
 
-### Attributes:
-- `pokemon` (String)  
-- `type1` (String)  
-- `type2` (String)  
-- `attack` (int)  
+### Attributes
 
-### Methods:
-- Constructor with all attributes  
-- Getter methods  
-- `hasTwoTypes()`  
-- `hasType(String type)`  
-- `toString()`  
+* `pokemon` (String) – name of the Pokémon
+* `type1` (String) – primary type
+* `type2` (String) – secondary type (may be empty)
+* `attack` (int) – Attack stat
 
----
+### Methods
 
-## 📥 Column → Attribute Map
-
-| Attribute Name | CSV Column Name | Column Index # | Notes |
-|----------------|------------------|----------------|-------|
-| pokemon        | Pokemon          | 1              | name of pokemon |
-| type1          | Type 1           | 2              | primary type |
-| type2          | Type 2           | 3              | may be empty |
-| attack         | Attack           | 5              | integer value |
+* Constructor with all attributes
+* Getter methods
+* `hasTwoTypes()` – returns true if the Pokémon has a secondary type
+* `hasType(String type)` – checks if the Pokémon matches a given type
+* `toString()` – returns a formatted string representation
 
 ---
 
-## 📊 Algorithms Implemented
+## Column to Attribute Map
 
-1. **Maximum Attack**  
-   Finds the Pokémon with the highest Attack stat.
-
-2. **Count Pokémon with Two Types**  
-   Counts how many Pokémon have both a primary and secondary type.
-
-3. **Filter by Type (if implemented)**  
-   Filters Pokémon by a chosen type.
+| Attribute | CSV Column | Index | Notes           |
+| --------- | ---------- | ----- | --------------- |
+| pokemon   | Pokemon    | 1     | Name of Pokémon |
+| type1     | Type 1     | 2     | Primary type    |
+| type2     | Type 2     | 3     | May be empty    |
+| attack    | Attack     | 5     | Integer value   |
 
 ---
 
-## 🧠 Insights & Results
+## Algorithms Implemented
 
-- Number of rows loaded: 151  
-- Highest attack value: 134 (Dragonite)  
-- Many Pokémon have only one type  
-- A smaller portion of Pokémon have two types  
+### 1. Find Maximum Attack
 
-**Answer to Guiding Question:**  
-The Pokémon with the highest Attack stat is Dragonite with 134 attack. Certain types such as Water and Normal appear more frequently in Generation 1 than others.
+Iterates through the array and returns the highest Attack value found.
 
----
+### 2. Count Pokémon with Two Types
 
-## 📝 Documentation
+Loops through the array and counts how many Pokémon have a non-empty secondary type.
 
-- All classes and methods include Javadoc comments.  
-- A UML class diagram is included in the repository as `UML_Diagram.png`.
+### 3. Type Filtering (Method Included)
+
+The `hasType(String type)` method allows filtering Pokémon by a specific type.
 
 ---
 
-## 🛡 Data Ethics & Quality Reflection
+## Results
 
-This dataset only includes Generation 1 Pokémon, which means it does not represent all Pokémon across all generations. Because of this, any conclusions about “which type is strongest” only apply to Generation 1. Additionally, missing secondary type values could affect certain counts. Overall, the dataset appears structured and consistent, but it is limited in scope and not fully representative of the entire Pokémon universe.
+* Number of rows loaded: 151
+* Highest Attack stat: 134
+* Number of Pokémon with two types: 62
 
----
-
-## ✅ Submission Checklist
-
-- [x] Dataset selected  
-- [x] Guiding question written  
-- [x] Class created with ≥3 attributes  
-- [x] File reading implemented  
-- [x] Array of objects created  
-- [x] At least 2 analysis algorithms implemented  
-- [x] Findings printed  
-- [x] Javadoc comments added  
-- [x] UML diagram included  
-- [x] Reflection completed  
-- [x] Code compiles & runs  
+The Pokémon with the highest Attack stat in Generation 1 is Dragonite with an Attack of 134. A majority of Pokémon have only one type, while 62 Pokémon have both a primary and secondary type.
 
 ---
 
-🚀 This project demonstrates file input, object-oriented design, and data analysis using Java.
+## Data Ethics and Quality Reflection
+
+This dataset includes only Generation 1 Pokémon, meaning conclusions cannot be generalized to all Pokémon across later generations. Because the dataset is limited in scope, findings such as “strongest type” or “most common type” apply only to this subset.
+
+Additionally, some Pokémon do not have a secondary type, which required handling empty values during analysis. Overall, the dataset is structured and consistent, but limited in representation.
+
+---
+
+## Project Requirements Checklist
+
+* Dataset selected
+* Guiding question written
+* Class created with at least three attributes
+* File reading implemented using `Scanner`
+* Array of objects created
+* At least two analysis algorithms implemented
+* Findings printed to console
+* Javadoc comments included
+* UML diagram created
+* Reflection completed
+* Code compiles and runs
+
+---
+
+This project demonstrates object-oriented programming, file input, and basic data analysis techniques in Java.
